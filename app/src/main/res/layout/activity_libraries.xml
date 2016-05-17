@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LibrariesActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorLightBlue"
+        android:id="@+id/linearLayout">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tourists_button_museums"
+            android:id="@+id/buttonMuseums"
+            android:background="@null"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:onClick="onClickMuseums"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tourists_button_libraries"
+            android:id="@+id/buttonLibraries"
+            android:background="@null"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tourists_button_parks"
+            android:id="@+id/buttonParks"
+            android:background="@null"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:onClick="onClickParks"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/libraries_text_title"
+        android:layout_below="@id/linearLayout"
+        android:id="@+id/textTitle"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textTitle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/libraries_text_content"/>
+</RelativeLayout>

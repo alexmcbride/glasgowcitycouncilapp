@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.alexmcbride.glasgowcitycouncilapp"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/CustomActivityTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".NewsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.MainActivity"/>
+        </activity>
+        <activity android:name=".ArticleActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.NewsActivity"/>
+        </activity>
+        <activity android:name=".TouristsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.MainActivity"/>
+        </activity>
+        <activity android:name=".MuseumActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.TouristsActivity"/>
+        </activity>
+        <activity android:name=".LibrariesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.TouristsActivity"/>
+        </activity>
+        <activity android:name=".ParksActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.TouristsActivity"/>
+        </activity>
+        <activity android:name=".CollectionActivity"/>
+        <activity android:name=".RecyclingActivity"/>
+        <activity android:name=".CommentsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.MainActivity"/>
+        </activity>
+        <activity android:name=".LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
+        </activity>
+        <activity android:name=".RegisterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.LoginActivity"/>
+        </activity>
+        <activity android:name=".LoginConfirmActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
+        </activity>
+        <activity android:name=".NewPostActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
+        </activity>
+        <activity android:name=".ViewPostActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
+        </activity>
+        <activity android:name=".LogoutActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
+        </activity>
+        <activity android:name=".RegisterConfirmActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.LoginActivity"/>
+        </activity>
+        <activity android:name=".NewCommentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.ViewPostActivity"/>
+        </activity>
+        <activity android:name=".CommentConfirmActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.ViewPostActivity"/>
+        </activity>
+    </application>
+
+</manifest>

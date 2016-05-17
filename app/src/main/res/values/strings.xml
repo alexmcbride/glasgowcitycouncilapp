@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Glasgow City Council</string>
+    <string name="main_text_news">News</string>
+    <string name="main_text_tourists">Tourists</string>
+    <string name="main_text_bins">Bins </string>
+    <string name="main_text_comments">Comments</string>
+    <string name="main_text_mycouncil">My Council</string>
+    <string name="tourists_text_title">Tourists</string>
+    <string name="button_back">Back</string>
+    <string name="tourists_button_museums">Museums</string>
+    <string name="tourists_button_libraries">Libraries</string>
+    <string name="tourists_button_parks">Parks</string>
+    <string name="museums_text_title">Museums</string>
+    <string name="libraries_text_title">Libraries</string>
+    <string name="libraries_text_content">With 32 libraries in local communities across Glasgow as well as the iconic Mitchell Library, Glasgow Libraries are proud to provide a free library service to everyone living, working or studying in Glasgow.\n\nWith a full-range of exciting and up-to-date books, free Internet access, computer courses and a whole range of events and activities for all ages, there really is something for everyone at Glasgow Libraries.\n\nOur website has lots of information on what’s going on – take a look, you will be amazed at what’s on offer!</string>
+    <string name="parks_text_title">Parks</string>
+    <string name="textContent">2015 celebrates the Glasgow\'s Green Year and when it comes to being green, Glasgow really does live up to its name. Meaning “Dear Green Place” in Gaelic, the city has over 90 parks and gardens and in 2014, eight of the city’s larger parks won the coveted Green Flag Award - the benchmark standard for UK parks.\n\nSo whether you’re looking for a place for the kids to enjoy some of the city’s amazing green space or simply some peace and quiet away from the city buzz, you\'ll be spoilt for choice.</string>
+    <string name="register_text_title">Register</string>
+    <string name="bins_text_title"><![CDATA[Bins & Recycling]]></string>
+    <string name="bins_button_collection">Collections</string>
+    <string name="bins_button_recycling">Recycling</string>
+    <string name="bins_button_problems">Report Problems</string>
+    <string name="collections_text_title">Collections</string>
+    <string name="collections_text_content">We provide a special collection service for bulky items of domestic waste. This service is provided to all households in Glasgow and is free of charge for most items, however, some types of materials are chargeable, or for health and safety reasons cannot be collected.\n\nCollections of bulky waste items will be uplifted within 28 days.</string>
+    <string name="collections_text_subtitle">Arrange</string>
+    <string name="collections_text_subcontent">Phone 0141 287 9700 in order to arrange a convenient time to collect the refuse.</string>
+    <string name="register_text_message">Please register with us using the form below.</string>
+    <string name="register_hint_username">Username</string>
+    <string name="register_hint_password">Password</string>
+    <string name="register_hint_first_name">First Name</string>
+    <string name="register_hint_last_name">Last Name</string>
+    <string name="register_hint_email_address">Email Address</string>
+    <string name="button_register">Register</string>
+    <string name="button_clear">Clear</string>
+    <string name="login_hint_username">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="button_login">Login</string>
+    <string name="login_text_message">Please login using the form below. Or register if you do not have an account.</string>
+    <string name="login_confirm_text_success_title">Success</string>
+    <string name="login_confirm_text_success">You have successfully logged in.</string>
+    <string name="button_continue">Continue</string>
+    <string name="news_text_title">News</string>
+    <string name="login_text_title">Login</string>
+    <string name="login_text_password_blank">Username and password cannot be blank</string>
+    <string name="login_text_invalid_login">Error: invalid username or password. Need to register?</string>
+    <string name="login_text_register_success">Register success!</string>
+    <string name="register_text_username_blank">Username cannot be blank</string>
+    <string name="register_text_password_blank">Password cannot be blank</string>
+    <string name="register_text_first_name_blank">First name cannot be blank</string>
+    <string name="register_text_last_name_blank">Last name cannot be blank</string>
+    <string name="register_text_email_address_blank">Email address cannot be blank</string>
+    <string name="register_text_username_exists">Error: user already exists</string>
+    <string name="leave_comment_text_title">Leave Comment</string>
+    <string name="comments_text_title">Comments</string>
+    <string name="title_activity_view_post">ViewPostActivity</string>
+    <string name="view_post_text_posted" formatted="false">Posted by %s about %s</string>
+    <string name="post_text_posted" formatted="false">%s ago by %s</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_settings">Settings</string>
+    <string name="logout_text_title">Logout</string>
+    <string name="logout_text_message">You are now logged out.</string>
+    <string name="logout_button_home">Home</string>
+    <string name="main_text_logged_in" formatted="false">Logged in as %s</string>
+    <string name="register_confirm_text_message">Thank you for registering!</string>
+    <string name="register_confirmation_text_title">Register Confirmation</string>
+    <string name="view_post_text_comments_title">Comments</string>
+    <string name="comment_meta" formatted="false">Posted by %s about %s</string>
+    <string name="view_post_hint_comment">Enter a new comment</string>
+    <string name="button_post">New Comment</string>
+    <string name="new_comment_text_title">New Comment</string>
+    <string name="button_post_comment">Post Comment</string>
+    <string name="new_comment_hint">Enter comment here</string>
+    <string name="comment_confirm_text_title">Comment Posted</string>
+    <string name="comment_confirm_text_message">Thank you - your comment has been posted</string>
+    <string name="action_login">Login</string>
+</resources>

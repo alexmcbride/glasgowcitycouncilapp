@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CollectionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorLightBlue"
+
+        android:id="@+id/linearLayout">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bins_button_collection"
+            android:id="@+id/buttonCollections"
+            android:background="@null"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:onClick="onClickCollections"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bins_button_recycling"
+            android:id="@+id/buttonRecycling"
+            android:background="@null"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:onClick="onClickRecycling"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bins_button_problems"
+            android:id="@+id/buttonProblems"
+            android:background="@null"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:onClick="onClickProblems"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/collections_text_title"
+        android:layout_below="@id/linearLayout"
+        android:id="@+id/textTitle"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textTitle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/collections_text_content"
+        android:id="@+id/textContent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/collections_text_subtitle"
+        android:layout_below="@id/textContent"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/textSubTitle"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/collections_text_subcontent"
+        android:layout_below="@id/textSubTitle"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"/>
+
+</RelativeLayout>
