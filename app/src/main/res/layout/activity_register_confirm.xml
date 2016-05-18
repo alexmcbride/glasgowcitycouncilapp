@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textTitle"
         android:text="@string/register_confirmation_text_title"
-        style="@style/Base.TextAppearance.AppCompat.Large"/>
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_marginBottom="4dp"/>
 
     <TextView
         android:layout_width="match_parent"

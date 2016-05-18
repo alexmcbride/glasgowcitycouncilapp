@@ -36,8 +36,8 @@
     <string name="login_hint_password">Password</string>
     <string name="button_login">Login</string>
     <string name="login_text_message">Please login using the form below. Or register if you do not have an account.</string>
-    <string name="login_confirm_text_success_title">Success</string>
-    <string name="login_confirm_text_success">You have successfully logged in.</string>
+    <string name="login_confirm_text_success_title">Thank You!</string>
+    <string name="login_confirm_text_success">You have successfully logged in. Now you can create posts and comment on stuff other people have posted!</string>
     <string name="button_continue">Continue</string>
     <string name="news_text_title">News</string>
     <string name="login_text_title">Login</string>
@@ -61,8 +61,8 @@
     <string name="logout_text_message">You are now logged out.</string>
     <string name="logout_button_home">Home</string>
     <string name="main_text_logged_in" formatted="false">Logged in as %s</string>
-    <string name="register_confirm_text_message">Thank you for registering!</string>
-    <string name="register_confirmation_text_title">Register Confirmation</string>
+    <string name="register_confirm_text_message">Now you are a member you can login, create posts and make comments. Go on, try logging in with the button below.</string>
+    <string name="register_confirmation_text_title">Thank You!</string>
     <string name="view_post_text_comments_title">Comments</string>
     <string name="comment_meta" formatted="false">%s by %s</string>
     <string name="view_post_hint_comment">Enter a new comment</string>
