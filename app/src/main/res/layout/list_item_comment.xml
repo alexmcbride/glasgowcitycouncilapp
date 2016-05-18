@@ -8,12 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="This is a comment"
-        android:id="@+id/textComment"/>
+        android:id="@+id/textComment"
+        android:layout_marginBottom="4dp"
+        style="@style/Base.TextAppearance.AppCompat.Small"/>
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textComment"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:id="@+id/textMeta"
-        tools:text="Posted by Alex about 4 minutes ago"
-        android:layout_marginBottom="4dp"/>
+        tools:text="4 minutes ago by Alex"
+        android:layout_marginBottom="4dp"
+        style="@style/MyTheme.TextView.PostMetaStyle" />
 </RelativeLayout>

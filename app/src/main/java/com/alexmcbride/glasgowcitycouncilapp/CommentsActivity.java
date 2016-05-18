@@ -35,6 +35,7 @@ public class CommentsActivity extends AppCompatActivity {
         Cursor cursor = db.getPostsCursor();
         mCursorAdapter = new PostCursorAdapter(this, cursor);
 
+        TextView textNoPosts = (TextView)findViewById(R.id.textNoPosts);
         ListView listPosts = ((ListView) findViewById(R.id.listPosts));
         listPosts.setAdapter(mCursorAdapter);
         listPosts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,6 +45,16 @@ public class CommentsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // show/hide no posts message
+        if (mCursorAdapter.getCount() == 0) {
+            listPosts.setVisibility(View.GONE);
+            textNoPosts.setVisibility(View.VISIBLE);
+        }
+        else {
+            listPosts.setVisibility(View.VISIBLE);
+            textNoPosts.setVisibility(View.GONE);
+        }
 
         String username = MainActivity.getPrefsUsername(this);
         TextView textWelcome = (TextView) findViewById(R.id.textWelcome);

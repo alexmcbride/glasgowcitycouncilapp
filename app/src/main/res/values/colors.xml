@@ -8,5 +8,6 @@
     <color name="colorDarkGreen">#0f4754</color>
     <color name="colorYellow">#ffc50b</color>
     <color name="colorLightBlue">#517fa3</color>
-    <color name="color_red">#FF0000</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorBlack">#000000</color>
 </resources>

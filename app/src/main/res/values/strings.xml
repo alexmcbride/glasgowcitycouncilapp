@@ -53,7 +53,7 @@
     <string name="leave_comment_text_title">Leave Comment</string>
     <string name="comments_text_title">Comments</string>
     <string name="title_activity_view_post">ViewPostActivity</string>
-    <string name="view_post_text_posted" formatted="false">Posted by %s about %s</string>
+    <string name="view_post_text_posted" formatted="false">%s by %s</string>
     <string name="post_text_posted" formatted="false">%s ago by %s</string>
     <string name="action_logout">Logout</string>
     <string name="action_settings">Settings</string>
@@ -64,7 +64,7 @@
     <string name="register_confirm_text_message">Thank you for registering!</string>
     <string name="register_confirmation_text_title">Register Confirmation</string>
     <string name="view_post_text_comments_title">Comments</string>
-    <string name="comment_meta" formatted="false">Posted by %s about %s</string>
+    <string name="comment_meta" formatted="false">%s by %s</string>
     <string name="view_post_hint_comment">Enter a new comment</string>
     <string name="button_post">New Comment</string>
     <string name="new_comment_text_title">New Comment</string>
@@ -89,4 +89,6 @@
     <string name="comments_button_add_post">Add Post</string>
     <string name="comments_text_post_message">Enter a new post to be displayed in the comments.</string>
     <string name="new_comment_text_new_comment">Enter a new comment for the post.</string>
+    <string name="comments_text_no_posts">There are no posts</string>
+    <string name="comments_text_no_comments">There are no comments</string>
 </resources>

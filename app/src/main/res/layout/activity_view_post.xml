@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,16 +14,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textTitle"
-        tools:text="Post Title"
-        style="@style/Base.TextAppearance.AppCompat.Large"/>
+        tools:text="In pretium erat ac vestibulum"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_marginBottom="4dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textComment"
         android:layout_below="@id/textTitle"
-        tools:text="This is a thing"
-        style="@style/Base.TextAppearance.AppCompat.Medium"/>
+        tools:text="In pretium erat ac vestibulum aliquam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\n\nSuspendisse vel ligula id lectus mollis ornare. Proin eget venenatis metus. Etiam arcu enim, finibus nec lorem nec, vehicula lacinia nulla. Proin sit amet elit et mauris aliquet fringilla. Sed nisi felis, laoreet ut ligula eget, auctor eleifend mi."
+        style="@style/Base.TextAppearance.AppCompat.Small"
+        android:layout_marginBottom="4dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +34,9 @@
         android:layout_below="@id/textComment"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        tools:text="Posted by Alex on 13/05/2016 at 14:09"/>
+        tools:text="5 minutes ago by Alex"
+        android:layout_marginBottom="4dp"
+        style="@style/MyTheme.TextView.PostMetaStyle"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -39,13 +44,22 @@
         android:id="@+id/textCommentsTitle"
         android:layout_below="@id/textMeta"
         android:text="@string/view_post_text_comments_title"
-        style="@style/Base.TextAppearance.AppCompat.Large"/>
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_marginBottom="4dp"/>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/listComments"
         android:layout_below="@id/textCommentsTitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textNoComments"
+        android:layout_below="@id/textCommentsTitle"
+        android:text="@string/comments_text_no_comments"
+        android:layout_centerHorizontal="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
@@ -55,5 +69,4 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
-
 </RelativeLayout>

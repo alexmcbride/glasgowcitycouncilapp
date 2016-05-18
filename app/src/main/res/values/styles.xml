@@ -31,4 +31,10 @@
         <item name="android:textSize">11sp</item>
     </style>
 
+    <style name="MyTheme.TextView.PostMetaStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorDarkGreen</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
 </resources>
