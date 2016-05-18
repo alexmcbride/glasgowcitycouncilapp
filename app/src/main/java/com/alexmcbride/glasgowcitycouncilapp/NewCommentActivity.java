@@ -62,7 +62,7 @@ public class NewCommentActivity extends AppCompatActivity {
         mPost.incrementCommentCount();
         db.updatePost(mPost);
 
-        Intent intent = CommentConfirmActivity.newIntent(this, mPost.getId());
+        Intent intent = ViewPostActivity.newIntent(this, mPost.getId());
         startActivity(intent);
     }
 
