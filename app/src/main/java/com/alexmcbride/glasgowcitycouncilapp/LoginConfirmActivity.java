@@ -16,16 +16,13 @@ public class LoginConfirmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_confirm);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_login_confirm));
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public static Intent newIntent(Context context) {
         return new Intent(context, LoginConfirmActivity.class);
-    }
-
-    public void onClickBack(View view) {
-        finish();
     }
 
     public void onClickContinue(View view) {

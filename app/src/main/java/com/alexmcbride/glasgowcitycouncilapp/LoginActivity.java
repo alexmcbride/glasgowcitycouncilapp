@@ -13,26 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final int REQUEST_REGISTER = 1;
-    private static final String EXTRA_REGISTER_SUCCESS = "REGISTER_SUCCESS";
-    private static final String EXTRA_REDIRECT = "REDIRECT";
     private static final String LOG = "LoginActivity";
 
     private EditText mEditUsername;
     private EditText mEditPassword;
     private TextView mTextErrorMessage;
-    private boolean mRedirect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Intent intent = getIntent();
-        mRedirect = intent.getBooleanExtra(EXTRA_REDIRECT, false);
-
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_login));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mEditUsername = (EditText)findViewById(R.id.editUsername);
@@ -70,10 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context) {
         return new Intent(context, LoginActivity.class);
-    }
-
-    public void onClickBack(View view) {
-        finish();
     }
 }
 

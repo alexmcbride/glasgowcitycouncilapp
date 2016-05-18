@@ -17,7 +17,8 @@ public class LogoutActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_logout));
 
         // log user out.
         MainActivity.clearPrefsUsername(this);

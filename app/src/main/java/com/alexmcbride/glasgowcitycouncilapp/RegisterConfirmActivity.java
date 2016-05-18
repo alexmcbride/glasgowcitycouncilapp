@@ -8,14 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class RegisterConfirmActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_confirm);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_registered));
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 

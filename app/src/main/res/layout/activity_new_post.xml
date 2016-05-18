@@ -3,49 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".NewPostActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Post"
-        style="@style/Base.TextAppearance.AppCompat.Large"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:id="@+id/textTitle"/>
+        android:text="@string/comments_text_post_message"
+        android:id="@+id/textMessage"/>
 
     <EditText
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"
-        android:layout_below="@id/textTitle"
+        android:hint="@string/comments_hint_title"
         android:id="@+id/editTitle"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Comment"
-        android:layout_below="@id/editTitle"
-        android:id="@+id/editComment"
-        android:inputType="textMultiLine"
-        android:lines="12"
-        android:minLines="6"
-        android:maxLines="12"
-        android:scrollbars="vertical"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+        android:layout_below="@id/textMessage"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Post"
-        android:layout_below="@id/editComment"
+        android:text="@string/comments_button_add_post"
+        android:layout_alignParentBottom="true"
         android:onClick="onClickAddPost"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+        android:id="@+id/buttonPost"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/comments_hint_comment"
+        android:layout_below="@id/editTitle"
+        android:layout_above="@id/buttonPost"
+        android:id="@+id/editComment"
+        android:inputType="textMultiLine"
+        android:lines="12"
+        android:scrollbars="vertical"/>
 
 </RelativeLayout>

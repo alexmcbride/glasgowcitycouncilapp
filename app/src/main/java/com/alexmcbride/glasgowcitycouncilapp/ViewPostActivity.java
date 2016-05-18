@@ -34,7 +34,8 @@ public class ViewPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_post);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_view_post));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mTextTitle = (TextView)findViewById(R.id.textTitle);

@@ -73,4 +73,20 @@
     <string name="comment_confirm_text_title">Comment Posted</string>
     <string name="comment_confirm_text_message">Thank you - your comment has been posted</string>
     <string name="action_login">Login</string>
+    <string name="comments_text_login">Login</string>
+    <string name="comments_text_view_posts">View Posts</string>
+    <string name="comments_text_posted_confirm">Comment Posted</string>
+    <string name="comments_text_login_confirm">Logged In</string>
+    <string name="comments_text_logout">Logged Out</string>
+    <string name="comments_text_new_comment">New Comment</string>
+    <string name="comments_text_new_post">New Post</string>
+    <string name="comments_text_registered">Registered</string>
+    <string name="comments_text_view_post">View Post</string>
+    <string name="comments_text_register">Register</string>
+    <string name="comments_welcome" formatted="false">Welcome, %s!</string>
+    <string name="comments_hint_title">Title</string>
+    <string name="comments_hint_comment">Comment</string>
+    <string name="comments_button_add_post">Add Post</string>
+    <string name="comments_text_post_message">Enter a new post to be displayed in the comments.</string>
+    <string name="new_comment_text_new_comment">Enter a new comment for the post.</string>
 </resources>

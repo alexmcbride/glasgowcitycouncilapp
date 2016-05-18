@@ -20,6 +20,7 @@ public class CommentConfirmActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_posted_confirm));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mPostId = getIntent().getLongExtra(EXTRA_POST_ID, -1);

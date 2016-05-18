@@ -2,7 +2,6 @@ package com.alexmcbride.glasgowcitycouncilapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 public class CommentsActivity extends AppCompatActivity {
     private static final String TAG = "CommentsActivity";
     private CursorAdapter mCursorAdapter;
-    private ListView mListPosts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +27,33 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_view_posts));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         DbHandler db = new DbHandler(this);
         Cursor cursor = db.getPostsCursor();
         mCursorAdapter = new PostCursorAdapter(this, cursor);
 
-        mListPosts = ((ListView)findViewById(R.id.listPosts));
-        mListPosts.setAdapter(mCursorAdapter);
-        mListPosts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListView listPosts = ((ListView) findViewById(R.id.listPosts));
+        listPosts.setAdapter(mCursorAdapter);
+        listPosts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = ViewPostActivity.newIntent(CommentsActivity.this, id);
                 startActivity(intent);
             }
         });
+
+        String username = MainActivity.getPrefsUsername(this);
+        TextView textWelcome = (TextView) findViewById(R.id.textWelcome);
+        if (username == null) {
+            textWelcome.setVisibility(View.GONE);
+        }
+        else {
+            textWelcome.setText(getString(R.string.comments_welcome, username));
+            textWelcome.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

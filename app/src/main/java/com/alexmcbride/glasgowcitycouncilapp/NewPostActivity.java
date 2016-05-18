@@ -24,12 +24,9 @@ public class NewPostActivity extends AppCompatActivity {
         mUsername = MainActivity.getPrefsUsername(this);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_new_post));
         actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    public void onClickBack(View view) {
-        finish();
     }
 
     public void onClickAddPost(View view) {

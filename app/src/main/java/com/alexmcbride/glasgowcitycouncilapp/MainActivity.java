@@ -55,24 +55,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public static SharedPreferences getSharedAppPrefs2(Context context) {
+    public static SharedPreferences getSharedPrefs(Context context) {
         return context.getApplicationContext().getSharedPreferences(SHARED_PREFS_NAME, 0);
     }
 
     public static String getPrefsUsername(Context context) {
-        SharedPreferences prefs = getSharedAppPrefs2(context);
+        SharedPreferences prefs = getSharedPrefs(context);
         return prefs.getString(PREFS_USERNAME, null);
     }
 
     public static void setPrefsUsername(Context context, String username) {
-        SharedPreferences prefs = getSharedAppPrefs2(context);
+        SharedPreferences prefs = getSharedPrefs(context);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PREFS_USERNAME, username);
         editor.apply();
     }
 
     public static void clearPrefsUsername(Context context) {
-        SharedPreferences prefs = getSharedAppPrefs2(context);
+        SharedPreferences prefs = getSharedPrefs(context);
         SharedPreferences.Editor editor = prefs.edit();
         editor.remove(PREFS_USERNAME);
         editor.apply();

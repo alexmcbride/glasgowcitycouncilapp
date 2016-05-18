@@ -13,9 +13,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/new_comment_text_title"
-        android:id="@+id/textTitle"
-        style="@style/TextAppearance.AppCompat.Large"/>
+        android:text="@string/new_comment_text_new_comment"
+        android:id="@+id/textTitle"/>
 
     <Button
         android:layout_width="match_parent"

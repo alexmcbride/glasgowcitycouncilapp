@@ -23,7 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Comments");
+        actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_register));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mEditUsername = (EditText)findViewById(R.id.editUsername);

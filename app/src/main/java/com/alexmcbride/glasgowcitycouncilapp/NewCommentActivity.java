@@ -26,6 +26,7 @@ public class NewCommentActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.comments_text_title));
+        actionBar.setSubtitle(getString(R.string.comments_text_new_comment));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mEditComment = (EditText)findViewById(R.id.editComment);
