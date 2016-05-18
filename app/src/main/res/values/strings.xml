@@ -94,4 +94,5 @@
     <string name="button_comment">Comment</string>
     <string name="recycling_text_title">Recycling</string>
     <string name="problems_text_title">Report Problems</string>
+    <string name="comments_text_comment_count">%d comments</string>
 </resources>

@@ -8,6 +8,7 @@ public class Post {
     private Date mPosted;
     private String mTitle;
     private String mContent;
+    private int mCommentCount;
 
     public long getId() {
         return mId;
@@ -47,5 +48,17 @@ public class Post {
 
     public void setContent(String content) {
         mContent = content;
+    }
+
+    public int getCommentCount() {
+        return mCommentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        mCommentCount = commentCount;
+    }
+
+    public void incrementCommentCount() {
+        mCommentCount++;
     }
 }

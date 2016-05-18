@@ -16,7 +16,7 @@ public class NewCommentActivity extends AppCompatActivity {
     private static final String EXTRA_POST_ID = "POST_ID";
     private static final String TAG = "NewCommentActivity";
 
-    private long mPostId;
+    private Post mPost;
     private EditText mEditComment;
 
     @Override
@@ -24,14 +24,18 @@ public class NewCommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_comment);
 
+        // update action bar.
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.comments_text_title));
         actionBar.setSubtitle(getString(R.string.comments_text_new_comment));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
         mEditComment = (EditText)findViewById(R.id.editComment);
 
-        mPostId = getIntent().getLongExtra(EXTRA_POST_ID, -1);
+        long postId = getIntent().getLongExtra(EXTRA_POST_ID, -1);
+        DbHandler db = new DbHandler(this);
+        mPost = db.getPost(postId);
     }
 
     public static Intent newIntent(Context context, long postId) {
@@ -45,15 +49,20 @@ public class NewCommentActivity extends AppCompatActivity {
         String username = MainActivity.getPrefsUsername(this);
 
         Comment comment = new Comment();
-        comment.setPostId(mPostId);
+        comment.setPostId(mPost.getId());
         comment.setUsername(username);
         comment.setPosted(new Date());
         comment.setContent(content);
 
+        // add comment to db.
         DbHandler db = new DbHandler(this);
         db.addComment(comment);
 
-        Intent intent = CommentConfirmActivity.newIntent(this, mPostId);
+        // update post comment count.
+        mPost.incrementCommentCount();
+        db.updatePost(mPost);
+
+        Intent intent = CommentConfirmActivity.newIntent(this, mPost.getId());
         startActivity(intent);
     }
 
@@ -63,7 +72,7 @@ public class NewCommentActivity extends AppCompatActivity {
         // intent.
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = ViewPostActivity.newIntent(this, mPostId);
+                Intent intent = ViewPostActivity.newIntent(this, mPost.getId());
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;

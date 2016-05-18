@@ -14,12 +14,21 @@
         android:layout_marginTop="4dp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textPosted"
         tools:text="2 hours ago by Alex"
         android:layout_below="@id/textTitle"
         android:layout_marginBottom="4dp"
         style="@style/Base.TextAppearance.AppCompat.Small"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCommentCount"
+        android:layout_below="@id/textTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        tools:text="0 comments"/>
 
 </RelativeLayout>

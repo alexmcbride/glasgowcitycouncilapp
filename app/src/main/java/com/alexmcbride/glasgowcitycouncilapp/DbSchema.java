@@ -52,6 +52,7 @@ public class DbSchema {
             public static final String POSTED = "posted";
             public static final String TITLE = "title";
             public static final String CONTENT = "content";
+            public static final String COMMENT_COUNT = "commentCount";
         }
     }
 

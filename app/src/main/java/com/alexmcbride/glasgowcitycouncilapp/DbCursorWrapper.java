@@ -67,6 +67,7 @@ public class DbCursorWrapper extends CursorWrapper {
         post.setPosted(new Date((getLong(getColumnIndex(PostTable.Columns.POSTED)))));
         post.setTitle(getString(getColumnIndex(PostTable.Columns.TITLE)));
         post.setContent(getString(getColumnIndex(PostTable.Columns.CONTENT)));
+        post.setCommentCount(getInt(getColumnIndex(PostTable.Columns.COMMENT_COUNT)));
         return post;
     }
 }

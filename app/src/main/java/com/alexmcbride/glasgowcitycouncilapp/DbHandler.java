@@ -19,7 +19,7 @@ import java.util.Date;
 
 public class DbHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "gcc.db";
-    private static final int DB_VERSION = 12;
+    private static final int DB_VERSION = 13;
 
     public DbHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -59,7 +59,8 @@ public class DbHandler extends SQLiteOpenHelper {
                 + PostTable.Columns.USERNAME + " TEXT,"
                 + PostTable.Columns.POSTED + " INTEGER,"
                 + PostTable.Columns.TITLE + " TEXT,"
-                + PostTable.Columns.CONTENT + " TEXT"
+                + PostTable.Columns.CONTENT + " TEXT,"
+                + PostTable.Columns.COMMENT_COUNT + " INTEGER"
                 + ");");
 
         db.execSQL("CREATE TABLE " + CommentTable.NAME + "("
@@ -366,15 +367,30 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public void addPost(Post post) {
+        ContentValues values = getContentValues(post);
+        SQLiteDatabase db = getWritableDatabase();
+        long id = db.insert(PostTable.NAME, null, values);
+        post.setId(id);
+    }
+
+    public boolean updatePost(Post post) {
+        ContentValues values = getContentValues(post);
+        SQLiteDatabase db = getWritableDatabase();
+        int rows = db.update(PostTable.NAME,
+                values,
+                PostTable.Columns.ID + "=?",
+                new String[]{String.valueOf(post.getId())});
+        return rows > 0;
+    }
+
+    private ContentValues getContentValues(Post post) {
         ContentValues values = new ContentValues();
         values.put(PostTable.Columns.USERNAME, post.getUsername());
         values.put(PostTable.Columns.TITLE, post.getTitle());
         values.put(PostTable.Columns.POSTED, post.getPosted().getTime());
         values.put(PostTable.Columns.CONTENT, post.getContent());
-
-        SQLiteDatabase db = getWritableDatabase();
-        long id = db.insert(PostTable.NAME, null, values);
-        post.setId(id);
+        values.put(PostTable.Columns.COMMENT_COUNT, post.getCommentCount());
+        return values;
     }
 
     public void addComment(Comment comment) {

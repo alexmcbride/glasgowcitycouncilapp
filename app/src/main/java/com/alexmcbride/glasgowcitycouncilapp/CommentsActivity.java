@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class CommentsActivity extends AppCompatActivity {
     private static final String TAG = "CommentsActivity";
     private CursorAdapter mCursorAdapter;
@@ -140,14 +142,19 @@ public class CommentsActivity extends AppCompatActivity {
         private void updateView(View view, Cursor cursor){
             TextView textTitle = (TextView)view.findViewById(R.id.textTitle);
             TextView textPosted = (TextView)view.findViewById(R.id.textPosted);
+            TextView textCommentCount = (TextView)view.findViewById(R.id.textCommentCount);
 
             DbCursorWrapper wrapper = new DbCursorWrapper(cursor);
             Post post = wrapper.getPost();
 
-            CharSequence time = DateUtils.getRelativeTimeSpanString(post.getPosted().getTime(), System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
+            // get humanised time.
+            CharSequence time = DateUtils.getRelativeTimeSpanString(post.getPosted().getTime(),
+                    System.currentTimeMillis(),
+                    DateUtils.SECOND_IN_MILLIS);
 
             textTitle.setText(post.getTitle());
             textPosted.setText(getString(R.string.post_text_posted, time, post.getUsername()));
+            textCommentCount.setText(getString(R.string.comments_text_comment_count, post.getCommentCount()));
         }
     }
 }
