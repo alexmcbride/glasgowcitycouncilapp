@@ -15,18 +15,28 @@
         android:id="@+id/textTitle"
         tools:text="Article Name"
         style="@style/Base.TextAppearance.AppCompat.Large"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginBottom="4dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textTitle">
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="Content"
-            android:layout_marginBottom="16dp"
-            android:id="@+id/textContent"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Content"
+                android:id="@+id/textContent"
+                android:layout_marginBottom="4dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_comment"
+                android:layout_below="@id/textContent"
+                android:onClick="onClickComment"/>
+        </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

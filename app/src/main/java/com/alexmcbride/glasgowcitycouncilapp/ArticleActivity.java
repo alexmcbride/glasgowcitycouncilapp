@@ -19,11 +19,6 @@ import com.alexmcbride.glasgowcitycouncilapp.DbSchema.CommentTable;
 public class ArticleActivity extends AppCompatActivity {
     private static final String EXTRA_ARTICLE_ID = "ARTICLE_ID";
 
-    private TextView mTextTitle;
-    private TextView mTextContent;
-
-    private Article mArticle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,21 +26,20 @@ public class ArticleActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("News");
-
-        Intent intent = getIntent();
-        long articleId = intent.getLongExtra(EXTRA_ARTICLE_ID, 0);
-
-        DbHandler db = new DbHandler(this);
+        actionBar.setTitle(getString(R.string.news_text_title));
 
         // get article.
-        mArticle = db.getArticle(articleId);
+        DbHandler db = new DbHandler(this);
+        long articleId = getIntent().getLongExtra(EXTRA_ARTICLE_ID, -1);
+        Article article = db.getArticle(articleId);
 
-        mTextTitle = (TextView)findViewById(R.id.textTitle);
-        mTextContent = (TextView)findViewById(R.id.textContent);
+        // get widgets
+        TextView textTitle = (TextView) findViewById(R.id.textTitle);
+        TextView textContent = (TextView) findViewById(R.id.textContent);
 
-        mTextTitle.setText(mArticle.getTitle());
-        mTextContent.setText(mArticle.getContent());
+        // update ui.
+        textTitle.setText(article.getTitle());
+        textContent.setText(article.getContent());
     }
 
     public static Intent newIntent(Context context, long id) {
@@ -54,7 +48,8 @@ public class ArticleActivity extends AppCompatActivity {
         return intent;
     }
 
-    public void onClickBack(View view) {
-        finish();
+    public void onClickComment(View view) {
+        Intent intent = CommentsActivity.newIntent(this);
+        startActivity(intent);
     }
 }

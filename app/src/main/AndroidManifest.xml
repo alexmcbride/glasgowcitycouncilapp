@@ -45,8 +45,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alexmcbride.glasgowcitycouncilapp.TouristsActivity"/>
         </activity>
-        <activity android:name=".CollectionActivity"/>
-        <activity android:name=".RecyclingActivity"/>
+        <activity android:name=".CollectionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.MainActivity"/>
+        </activity>
+        <activity android:name=".RecyclingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CollectionActivity"/>
+        </activity>
+        <activity android:name=".ReportProblemActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.alexmcbride.glasgowcitycouncilapp.CollectionActivity"/>
+        </activity>
         <activity android:name=".CommentsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

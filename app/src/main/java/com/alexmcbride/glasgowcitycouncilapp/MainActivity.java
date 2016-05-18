@@ -13,8 +13,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String SHARED_PREFS_NAME = "GCC_PREFS";
     private static final String PREFS_USERNAME = "USERNAME";
 
-    private TextView mTextLoggedIn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +22,14 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Home");
 
         // show logged in text.
-        mTextLoggedIn = (TextView)findViewById(R.id.textLoggedIn);
+        TextView textLoggedIn = (TextView) findViewById(R.id.textLoggedIn);
         String username = getPrefsUsername(this);
         if (username == null) {
-            mTextLoggedIn.setVisibility(View.GONE);
+            textLoggedIn.setVisibility(View.GONE);
         }
         else {
-            mTextLoggedIn.setVisibility(View.VISIBLE);
-            mTextLoggedIn.setText(getString(R.string.main_text_logged_in, username));
+            textLoggedIn.setVisibility(View.VISIBLE);
+            textLoggedIn.setText(getString(R.string.main_text_logged_in, username));
         }
     }
 

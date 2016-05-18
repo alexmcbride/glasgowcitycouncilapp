@@ -91,4 +91,7 @@
     <string name="new_comment_text_new_comment">Enter a new comment for the post.</string>
     <string name="comments_text_no_posts">There are no posts</string>
     <string name="comments_text_no_comments">There are no comments</string>
+    <string name="button_comment">Comment</string>
+    <string name="recycling_text_title">Recycling</string>
+    <string name="problems_text_title">Report Problems</string>
 </resources>
