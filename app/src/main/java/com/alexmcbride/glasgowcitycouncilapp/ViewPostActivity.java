@@ -1,5 +1,6 @@
 package com.alexmcbride.glasgowcitycouncilapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -14,6 +15,7 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +23,14 @@ import java.util.Date;
 
 public class ViewPostActivity extends AppCompatActivity {
     private static final String EXTRA_POST_ID = "POST_ID";
+    private static final String EXTRA_COMMENT_ID = "COMMENT_ID";
     private TextView mTextTitle;
     private TextView mTextMeta;
     private TextView mTextComment;
     private ListView mListComments;
     private TextView mTextNoComments;
     private long mPostId;
+    private long mCommentId;
     private DbHandler mDbHandler;
     private CommentCursorAdapter mCursorAdapter;
 
@@ -46,12 +50,16 @@ public class ViewPostActivity extends AppCompatActivity {
         mListComments = (ListView) findViewById(R.id.listComments);
         mTextNoComments = (TextView) findViewById(R.id.textNoComments);
 
-        mPostId = getIntent().getLongExtra(EXTRA_POST_ID, -1);
+        Intent intent = getIntent();
+        mPostId = intent.getLongExtra(EXTRA_POST_ID, -1);
+        mCommentId = intent.getLongExtra(EXTRA_COMMENT_ID, -1);
 
         mDbHandler = new DbHandler(this);
         Post post = mDbHandler.getPost(mPostId);
 
-        CharSequence time = DateUtils.getRelativeTimeSpanString(post.getPosted().getTime(), System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
+        CharSequence time = DateUtils.getRelativeTimeSpanString(post.getPosted().getTime(),
+                System.currentTimeMillis(),
+                DateUtils.SECOND_IN_MILLIS);
 
         mTextTitle.setText(post.getTitle());
         mTextMeta.setText(getString(R.string.view_post_text_posted, time, post.getUsername()));
@@ -87,14 +95,15 @@ public class ViewPostActivity extends AppCompatActivity {
         return intent;
     }
 
-    public void onClickBack(View view) {
-        Intent intent = CommentsActivity.newIntent(this);
-        startActivity(intent);
+    public static Intent newIntent(Context context, long postId, long commentId) {
+        Intent intent = newIntent(context, postId);
+        intent.putExtra(EXTRA_COMMENT_ID, commentId);
+        return intent;
     }
 
-    public void onClickPost(View view) {
+    public void onClickNewComment(View view) {
+        // login if not already.
         String username = MainActivity.getPrefsUsername(this);
-
         if (username == null) {
             Intent intent = LoginActivity.newIntent(this);
             startActivity(intent);
@@ -135,6 +144,13 @@ public class ViewPostActivity extends AppCompatActivity {
 
             textComment.setText(comment.getContent());
             textMeta.setText(getString(R.string.comment_meta, time, comment.getUsername()));
+
+            // if this is the comment we've been passed then highlight it.
+//            if (mCommentId == comment.getId()) {
+//                RelativeLayout layout = (RelativeLayout)view.findViewById(R.id.relativeLayout);
+//                layout.setBackgroundColor(getResources().getColor(R.color.colorLightBlue));
+//                layout.invalidate();
+//            }
         }
     }
 }

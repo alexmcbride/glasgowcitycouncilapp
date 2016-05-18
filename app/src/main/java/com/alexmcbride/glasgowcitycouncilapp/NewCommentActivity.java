@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -30,9 +31,9 @@ public class NewCommentActivity extends AppCompatActivity {
         actionBar.setSubtitle(getString(R.string.comments_text_new_comment));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-
         mEditComment = (EditText)findViewById(R.id.editComment);
 
+        // get post this comment is for.
         long postId = getIntent().getLongExtra(EXTRA_POST_ID, -1);
         DbHandler db = new DbHandler(this);
         mPost = db.getPost(postId);
@@ -45,12 +46,16 @@ public class NewCommentActivity extends AppCompatActivity {
     }
 
     public void onClickPostComment(View view) {
-        String content = mEditComment.getText().toString();
-        String username = MainActivity.getPrefsUsername(this);
+        String content = mEditComment.getText().toString().trim();
+        if (content.length() == 0) {
+            Toast.makeText(NewCommentActivity.this, "No comment to post", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        // create new comment.
         Comment comment = new Comment();
         comment.setPostId(mPost.getId());
-        comment.setUsername(username);
+        comment.setUsername(MainActivity.getPrefsUsername(this));
         comment.setPosted(new Date());
         comment.setContent(content);
 
@@ -62,7 +67,8 @@ public class NewCommentActivity extends AppCompatActivity {
         mPost.incrementCommentCount();
         db.updatePost(mPost);
 
-        Intent intent = ViewPostActivity.newIntent(this, mPost.getId());
+        // redirect back to post to view newly posted comment.
+        Intent intent = ViewPostActivity.newIntent(this, mPost.getId(), comment.getId());
         startActivity(intent);
     }
 
