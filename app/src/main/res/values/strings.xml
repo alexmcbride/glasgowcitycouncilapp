@@ -74,7 +74,7 @@
     <string name="comment_confirm_text_message">Thank you - your comment has been posted</string>
     <string name="action_login">Login</string>
     <string name="comments_text_login">Login</string>
-    <string name="comments_text_view_posts">View Posts</string>
+    <string name="comments_text_view_posts">Posts</string>
     <string name="comments_text_posted_confirm">Comment Posted</string>
     <string name="comments_text_login_confirm">Logged In</string>
     <string name="comments_text_logout">Logged Out</string>
@@ -95,4 +95,6 @@
     <string name="recycling_text_title">Recycling</string>
     <string name="problems_text_title">Report Problems</string>
     <string name="comments_text_comment_count">%d comments</string>
+    <string name="comments_toast_new_comment">New comment posted!</string>
+    <string name="comment_toast_new_post">New post posted!</string>
 </resources>

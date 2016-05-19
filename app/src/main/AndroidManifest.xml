@@ -75,22 +75,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alexmcbride.glasgowcitycouncilapp.LoginActivity"/>
         </activity>
-        <activity android:name=".LoginConfirmActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
-        </activity>
         <activity android:name=".NewPostActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
         </activity>
         <activity android:name=".ViewPostActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>
-        </activity>
-        <activity android:name=".LogoutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.alexmcbride.glasgowcitycouncilapp.CommentsActivity"/>

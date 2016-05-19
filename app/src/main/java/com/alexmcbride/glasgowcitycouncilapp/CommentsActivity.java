@@ -17,11 +17,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 public class CommentsActivity extends AppCompatActivity {
     private static final String TAG = "CommentsActivity";
+    private static final String EXTRA_JUST_LOGGED_IN = "JUST_LOGGED_IN";
     private CursorAdapter mCursorAdapter;
+    private TextView mTextWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +59,19 @@ public class CommentsActivity extends AppCompatActivity {
         }
 
         String username = MainActivity.getPrefsUsername(this);
-        TextView textWelcome = (TextView) findViewById(R.id.textWelcome);
+        mTextWelcome = (TextView) findViewById(R.id.textWelcome);
         if (username == null) {
-            textWelcome.setVisibility(View.GONE);
+            mTextWelcome.setVisibility(View.GONE);
         }
         else {
-            textWelcome.setText(getString(R.string.comments_welcome, username));
-            textWelcome.setVisibility(View.VISIBLE);
+            mTextWelcome.setText(getString(R.string.comments_welcome, username));
+            mTextWelcome.setVisibility(View.VISIBLE);
+        }
+
+        Intent intent = getIntent();
+        boolean justLoggedIn = intent.getBooleanExtra(EXTRA_JUST_LOGGED_IN, false);
+        if (justLoggedIn) {
+            Toast.makeText(CommentsActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -108,8 +114,10 @@ public class CommentsActivity extends AppCompatActivity {
                     Toast.makeText(CommentsActivity.this, "Not logged in", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Intent intent = LogoutActivity.newIntent(this);
-                    startActivity(intent);
+                    // log user out.
+                    MainActivity.clearPrefsUsername(this);
+                    mTextWelcome.setVisibility(View.GONE);
+                    Toast.makeText(CommentsActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -119,7 +127,13 @@ public class CommentsActivity extends AppCompatActivity {
     }
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, CommentsActivity.class);
+        return newIntent(context, false);
+    }
+
+    public static Intent newIntent(Context context, boolean justLoggedIn) {
+        Intent intent = new Intent(context, CommentsActivity.class);
+        intent.putExtra(EXTRA_JUST_LOGGED_IN, justLoggedIn);
+        return intent;
     }
 
     private class PostCursorAdapter extends CursorAdapter {

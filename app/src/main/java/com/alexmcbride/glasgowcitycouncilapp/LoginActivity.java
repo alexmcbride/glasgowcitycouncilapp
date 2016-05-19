@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
             MainActivity.setPrefsUsername(this, username);
 
-            Intent intent = CommentsActivity.newIntent(this);
+            Intent intent = CommentsActivity.newIntent(this, true);
             startActivity(intent);
         }
         else {

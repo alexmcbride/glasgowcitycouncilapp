@@ -52,7 +52,7 @@ public class NewPostActivity extends AppCompatActivity {
         DbHandler db = new DbHandler(this);
         db.addPost(post);
 
-        Intent intent = ViewPostActivity.newIntent(this, post.getId());
+        Intent intent = ViewPostActivity.newIntent(this, post.getId(), true, false);
         startActivity(intent);
     }
 

@@ -68,7 +68,7 @@ public class NewCommentActivity extends AppCompatActivity {
         db.updatePost(mPost);
 
         // redirect back to post to view newly posted comment.
-        Intent intent = ViewPostActivity.newIntent(this, mPost.getId(), comment.getId());
+        Intent intent = ViewPostActivity.newIntent(this, mPost.getId(), false, true);
         startActivity(intent);
     }
 

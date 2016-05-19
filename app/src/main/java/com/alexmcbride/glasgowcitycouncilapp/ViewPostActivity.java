@@ -1,9 +1,7 @@
 package com.alexmcbride.glasgowcitycouncilapp;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,25 +10,21 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Date;
-
 public class ViewPostActivity extends AppCompatActivity {
     private static final String EXTRA_POST_ID = "POST_ID";
-    private static final String EXTRA_COMMENT_ID = "COMMENT_ID";
+    private static final String EXTRA_COMMENT_POSTED = "COMMENT_POSTED";
+    private static final String EXTRA_POST_POSTED = "POST_POSTED";
     private TextView mTextTitle;
     private TextView mTextMeta;
     private TextView mTextComment;
-    private ListView mListComments;
+    private NonScrollListView mListComments;
     private TextView mTextNoComments;
     private long mPostId;
-    private long mCommentId;
     private DbHandler mDbHandler;
     private CommentCursorAdapter mCursorAdapter;
 
@@ -47,12 +41,13 @@ public class ViewPostActivity extends AppCompatActivity {
         mTextTitle = (TextView) findViewById(R.id.textTitle);
         mTextMeta = (TextView) findViewById(R.id.textMeta);
         mTextComment = (TextView) findViewById(R.id.textComment);
-        mListComments = (ListView) findViewById(R.id.listComments);
+        mListComments = (NonScrollListView) findViewById(R.id.listComments);
         mTextNoComments = (TextView) findViewById(R.id.textNoComments);
 
         Intent intent = getIntent();
         mPostId = intent.getLongExtra(EXTRA_POST_ID, -1);
-        mCommentId = intent.getLongExtra(EXTRA_COMMENT_ID, -1);
+        boolean commentPosted = intent.getBooleanExtra(EXTRA_COMMENT_POSTED, false);
+        boolean postPosted = intent.getBooleanExtra(EXTRA_POST_POSTED, false);
 
         mDbHandler = new DbHandler(this);
         Post post = mDbHandler.getPost(mPostId);
@@ -78,6 +73,17 @@ public class ViewPostActivity extends AppCompatActivity {
             mTextNoComments.setVisibility(View.GONE);
         }
 
+        // make sure we scroll to the top of the scroll view on starting.
+        ScrollView scrollView = (ScrollView)findViewById(R.id.scrollView);
+        scrollView.smoothScrollTo(0, 0);
+
+        // show messages about any new posts or comments made.
+        if (commentPosted) {
+            Toast.makeText(ViewPostActivity.this, R.string.comments_toast_new_comment, Toast.LENGTH_SHORT).show();
+        }
+        if (postPosted) {
+            Toast.makeText(ViewPostActivity.this, R.string.comment_toast_new_post, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -95,9 +101,10 @@ public class ViewPostActivity extends AppCompatActivity {
         return intent;
     }
 
-    public static Intent newIntent(Context context, long postId, long commentId) {
+    public static Intent newIntent(Context context, long postId, boolean postPosted, boolean commentPosted) {
         Intent intent = newIntent(context, postId);
-        intent.putExtra(EXTRA_COMMENT_ID, commentId);
+        intent.putExtra(EXTRA_POST_POSTED, postPosted);
+        intent.putExtra(EXTRA_COMMENT_POSTED, commentPosted);
         return intent;
     }
 
