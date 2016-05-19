@@ -95,6 +95,6 @@
     <string name="recycling_text_title">Recycling</string>
     <string name="problems_text_title">Report Problems</string>
     <string name="comments_text_comment_count">%d comments</string>
-    <string name="comments_toast_new_comment">New comment posted!</string>
-    <string name="comment_toast_new_post">New post posted!</string>
+    <string name="comments_toast_new_comment">New comment added!</string>
+    <string name="comment_toast_new_post">New post added!</string>
 </resources>
