@@ -16,15 +16,9 @@ import android.widget.Toast;
 
 public class ViewPostActivity extends AppCompatActivity {
     private static final String EXTRA_POST_ID = "POST_ID";
-    private static final String EXTRA_COMMENT_POSTED = "COMMENT_POSTED";
-    private static final String EXTRA_POST_POSTED = "POST_POSTED";
-    private TextView mTextTitle;
-    private TextView mTextMeta;
-    private TextView mTextComment;
-    private NonScrollListView mListComments;
-    private TextView mTextNoComments;
+    private static final String EXTRA_COMMENT_ADDED = "COMMENT_ADDED";
+    private static final String EXTRA_POST_ADDED = "POST_ADDED";
     private long mPostId;
-    private DbHandler mDbHandler;
     private CommentCursorAdapter mCursorAdapter;
 
     @Override
@@ -32,44 +26,52 @@ public class ViewPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
 
+        // setup actionbar.
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.comments_text_title));
         actionBar.setSubtitle(getString(R.string.comments_text_view_post));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        mTextTitle = (TextView) findViewById(R.id.textTitle);
-        mTextMeta = (TextView) findViewById(R.id.textMeta);
-        mTextComment = (TextView) findViewById(R.id.textComment);
-        mListComments = (NonScrollListView) findViewById(R.id.listComments);
-        mTextNoComments = (TextView) findViewById(R.id.textNoComments);
+        // get widgets
+        TextView textTitle = (TextView) findViewById(R.id.textTitle);
+        TextView textMeta = (TextView) findViewById(R.id.textMeta);
+        TextView textComment = (TextView) findViewById(R.id.textComment);
+        NonScrollListView listComments = (NonScrollListView) findViewById(R.id.listComments);
+        TextView textNoComments = (TextView) findViewById(R.id.textNoComments);
 
+        // get data from intent.
         Intent intent = getIntent();
         mPostId = intent.getLongExtra(EXTRA_POST_ID, -1);
-        boolean commentPosted = intent.getBooleanExtra(EXTRA_COMMENT_POSTED, false);
-        boolean postPosted = intent.getBooleanExtra(EXTRA_POST_POSTED, false);
+        boolean commentAdded = intent.getBooleanExtra(EXTRA_COMMENT_ADDED, false);
+        boolean postAdded = intent.getBooleanExtra(EXTRA_POST_ADDED, false);
 
-        mDbHandler = new DbHandler(this);
-        Post post = mDbHandler.getPost(mPostId);
+        // get post from DB.
+        DbHandler dbHandler = new DbHandler(this);
+        Post post = dbHandler.getPost(mPostId);
 
+        // get humanised time
         CharSequence time = DateUtils.getRelativeTimeSpanString(post.getPosted().getTime(),
                 System.currentTimeMillis(),
                 DateUtils.SECOND_IN_MILLIS);
 
-        mTextTitle.setText(post.getTitle());
-        mTextMeta.setText(getString(R.string.view_post_text_posted, time, post.getUsername()));
-        mTextComment.setText(post.getContent());
+        // update ui.
+        textTitle.setText(post.getTitle());
+        textMeta.setText(getString(R.string.view_post_text_posted, time, post.getUsername()));
+        textComment.setText(post.getContent());
 
-        Cursor cursor = mDbHandler.getCommentsCursor(mPostId);
+        // update comments listview.
+        Cursor cursor = dbHandler.getCommentsCursor(mPostId);
         mCursorAdapter = new CommentCursorAdapter(this, cursor);
-        mListComments.setAdapter(mCursorAdapter);
+        listComments.setAdapter(mCursorAdapter);
 
         // show/hide no comments message.
         if (mCursorAdapter.getCount() == 0) {
-            mListComments.setVisibility(View.GONE);
-            mTextNoComments.setVisibility(View.VISIBLE);
-        } else {
-            mListComments.setVisibility(View.VISIBLE);
-            mTextNoComments.setVisibility(View.GONE);
+            listComments.setVisibility(View.GONE);
+            textNoComments.setVisibility(View.VISIBLE);
+        }
+        else {
+            listComments.setVisibility(View.VISIBLE);
+            textNoComments.setVisibility(View.GONE);
         }
 
         // make sure we scroll to the top of the scroll view on starting.
@@ -77,10 +79,10 @@ public class ViewPostActivity extends AppCompatActivity {
         scrollView.smoothScrollTo(0, 0);
 
         // show messages about any new posts or comments made.
-        if (commentPosted) {
+        if (commentAdded) {
             Toast.makeText(ViewPostActivity.this, R.string.comments_toast_new_comment, Toast.LENGTH_SHORT).show();
         }
-        if (postPosted) {
+        if (postAdded) {
             Toast.makeText(ViewPostActivity.this, R.string.comment_toast_new_post, Toast.LENGTH_SHORT).show();
         }
     }
@@ -89,22 +91,10 @@ public class ViewPostActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
 
+        // cleanup cursor.
         if (mCursorAdapter != null) {
             mCursorAdapter.getCursor().close();
         }
-    }
-
-    public static Intent newIntent(Context context, long postId) {
-        Intent intent = new Intent(context, ViewPostActivity.class);
-        intent.putExtra(EXTRA_POST_ID, postId);
-        return intent;
-    }
-
-    public static Intent newIntent(Context context, long postId, boolean postPosted, boolean commentPosted) {
-        Intent intent = newIntent(context, postId);
-        intent.putExtra(EXTRA_POST_POSTED, postPosted);
-        intent.putExtra(EXTRA_COMMENT_POSTED, commentPosted);
-        return intent;
     }
 
     public void onClickNewComment(View view) {
@@ -118,6 +108,19 @@ public class ViewPostActivity extends AppCompatActivity {
             Intent intent = NewCommentActivity.newIntent(this, mPostId);
             startActivity(intent);
         }
+    }
+
+    public static Intent newIntent(Context context, long postId) {
+        Intent intent = new Intent(context, ViewPostActivity.class);
+        intent.putExtra(EXTRA_POST_ID, postId);
+        return intent;
+    }
+
+    public static Intent newIntent(Context context, long postId, boolean postAdded, boolean commentAdded) {
+        Intent intent = newIntent(context, postId);
+        intent.putExtra(EXTRA_POST_ADDED, postAdded);
+        intent.putExtra(EXTRA_COMMENT_ADDED, commentAdded);
+        return intent;
     }
 
     private class CommentCursorAdapter extends CursorAdapter {
@@ -150,13 +153,6 @@ public class ViewPostActivity extends AppCompatActivity {
 
             textComment.setText(comment.getContent());
             textMeta.setText(getString(R.string.comment_meta, time, comment.getUsername()));
-
-            // if this is the comment we've been passed then highlight it.
-//            if (mCommentId == comment.getId()) {
-//                RelativeLayout layout = (RelativeLayout)view.findViewById(R.id.relativeLayout);
-//                layout.setBackgroundColor(getResources().getColor(R.color.colorLightBlue));
-//                layout.invalidate();
-//            }
         }
     }
 }
