@@ -28,15 +28,18 @@ public class CommentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
 
+        // update actionbar.
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(getString(R.string.comments_text_title));
         actionBar.setSubtitle(getString(R.string.comments_text_view_posts));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        // init db.
         DbHandler db = new DbHandler(this);
         Cursor cursor = db.getPostsCursor();
         mCursorAdapter = new PostCursorAdapter(this, cursor);
 
+        // init widgets
         TextView textNoPosts = (TextView)findViewById(R.id.textNoPosts);
         ListView listPosts = ((ListView) findViewById(R.id.listPosts));
         listPosts.setAdapter(mCursorAdapter);
@@ -58,6 +61,7 @@ public class CommentsActivity extends AppCompatActivity {
             textNoPosts.setVisibility(View.GONE);
         }
 
+        // get if user logged and and show/hide welcome message
         String username = MainActivity.getPrefsUsername(this);
         mTextWelcome = (TextView) findViewById(R.id.textWelcome);
         if (username == null) {
@@ -68,6 +72,7 @@ public class CommentsActivity extends AppCompatActivity {
             mTextWelcome.setVisibility(View.VISIBLE);
         }
 
+        // if we're redirecting from login screen then show just logged in message.
         Intent intent = getIntent();
         boolean justLoggedIn = intent.getBooleanExtra(EXTRA_JUST_LOGGED_IN, false);
         if (justLoggedIn) {
@@ -79,6 +84,7 @@ public class CommentsActivity extends AppCompatActivity {
     public void onDestroy() {
         super.onDestroy();
 
+        // cleanup cursor on exit...
         if (mCursorAdapter != null) {
             mCursorAdapter.getCursor().close();
         }
@@ -87,29 +93,30 @@ public class CommentsActivity extends AppCompatActivity {
     public void onClickNewPost(View view) {
         String username = MainActivity.getPrefsUsername(this);
 
-        // check if we're logged in, if not then redirect to login.
+        // if we're not logged in then redirect to login screen, otherwise go to new post screen.
+        Intent intent;
         if (username == null) {
-            Intent intent = LoginActivity.newIntent(this);
-            startActivity(intent);
+            intent = LoginActivity.newIntent(this);
         }
         else {
-            Intent intent = NewPostActivity.newIntent(this);
-            startActivity(intent);
+            intent = NewPostActivity.newIntent(this);
         }
+        startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_comments, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        String username = MainActivity.getPrefsUsername(this);
+        // handle options menu.
         switch (item.getItemId()) {
             case R.id.action_logout: {
+                // log user out, or show error if not logged in.
+                String username = MainActivity.getPrefsUsername(this);
                 if (username == null) {
                     Toast.makeText(CommentsActivity.this, "Not logged in", Toast.LENGTH_SHORT).show();
                 }
@@ -143,6 +150,7 @@ public class CommentsActivity extends AppCompatActivity {
 
         @Override
         public View newView(Context context, Cursor cursor, ViewGroup parent) {
+            // create new view and update it.
             View view = getLayoutInflater().inflate(R.layout.list_item_post, null);
             updateView(view, cursor);
             return view;
@@ -150,14 +158,17 @@ public class CommentsActivity extends AppCompatActivity {
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
+            // update exiting view.
             updateView(view, cursor);
         }
 
         private void updateView(View view, Cursor cursor){
+            // get widgets
             TextView textTitle = (TextView)view.findViewById(R.id.textTitle);
             TextView textPosted = (TextView)view.findViewById(R.id.textPosted);
             TextView textCommentCount = (TextView)view.findViewById(R.id.textCommentCount);
 
+            // get db.
             DbCursorWrapper wrapper = new DbCursorWrapper(cursor);
             Post post = wrapper.getPost();
 
@@ -166,6 +177,7 @@ public class CommentsActivity extends AppCompatActivity {
                     System.currentTimeMillis(),
                     DateUtils.SECOND_IN_MILLIS);
 
+            // update widgets
             textTitle.setText(post.getTitle());
             textPosted.setText(getString(R.string.post_text_posted, time, post.getUsername()));
             textCommentCount.setText(getString(R.string.comments_text_comment_count, post.getCommentCount()));
