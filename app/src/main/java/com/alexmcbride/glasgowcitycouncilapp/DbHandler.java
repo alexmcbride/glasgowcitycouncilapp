@@ -134,12 +134,12 @@ public class DbHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE if EXISTS " + MuseumTable.NAME + ";");
-        db.execSQL("DROP TABLE if EXISTS " + UserTable.NAME + ";");
-        db.execSQL("DROP TABLE if EXISTS " + LoginTable.NAME + ";");
-        db.execSQL("DROP TABLE if EXISTS " + ArticleTable.NAME + ";");
-        db.execSQL("DROP TABLE if EXISTS " + PostTable.NAME + ";");
-        db.execSQL("DROP TABLE if EXISTS " + CommentTable.NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + MuseumTable.NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + UserTable.NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + LoginTable.NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + ArticleTable.NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + PostTable.NAME + ";");
+        db.execSQL("DROP TABLE IF EXISTS " + CommentTable.NAME + ";");
         onCreate(db);
     }
 
