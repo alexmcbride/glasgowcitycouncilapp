@@ -2,6 +2,7 @@ package com.alexmcbride.glasgowcitycouncilapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,5 +32,11 @@ public class ReportProblemActivity extends AppCompatActivity {
     public void onClickRecycling(View view) {
         Intent intent = RecyclingActivity.newIntent(this);
         startActivity(intent);
+    }
+
+    public void onClickReportProblem(View view) {
+        String url = "https://iweb.itouchvision.com/portal/f?p=citizen:login:::NO:RP:UID:B4B7F31D4CTN301SC4342E04V0007DF010G0683E";
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
     }
 }
