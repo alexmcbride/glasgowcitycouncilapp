@@ -20,13 +20,11 @@ public class CollectionActivity extends AppCompatActivity {
     }
 
     public void onClickRecycling(View view) {
-        Intent intent = RecyclingActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(RecyclingActivity.newIntent(this));
     }
 
     public void onClickProblems(View view) {
-        Intent intent = ReportProblemActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(ReportProblemActivity.newIntent(this));
     }
 
     public static Intent newIntent(Context context) {

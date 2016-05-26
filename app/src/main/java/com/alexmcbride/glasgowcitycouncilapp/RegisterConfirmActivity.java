@@ -14,8 +14,8 @@ public class RegisterConfirmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_confirm);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_registered));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_registered);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -24,7 +24,6 @@ public class RegisterConfirmActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View view) {
-        Intent intent = LoginActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(LoginActivity.newIntent(this));
     }
 }

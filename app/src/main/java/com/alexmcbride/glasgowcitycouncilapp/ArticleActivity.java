@@ -26,7 +26,7 @@ public class ArticleActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(getString(R.string.news_text_title));
+        actionBar.setTitle(R.string.news_text_title);
 
         // get article.
         DbHandler db = new DbHandler(this);
@@ -49,7 +49,6 @@ public class ArticleActivity extends AppCompatActivity {
     }
 
     public void onClickComment(View view) {
-        Intent intent = CommentsActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(CommentsActivity.newIntent(this));
     }
 }

@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_login));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_login);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mEditUsername = (EditText)findViewById(R.id.editUsername);
@@ -49,8 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
             MainActivity.setPrefsUsername(this, username);
 
-            Intent intent = CommentsActivity.newIntent(this, true);
-            startActivity(intent);
+            startActivity(CommentsActivity.newIntent(this, true));
         }
         else {
             mTextErrorMessage.setText(R.string.login_text_invalid_login);
@@ -58,8 +57,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClickRegister(View view) {
-        Intent intent = RegisterActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(RegisterActivity.newIntent(this));
     }
 
     public static Intent newIntent(Context context) {

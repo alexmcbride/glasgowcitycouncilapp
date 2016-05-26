@@ -16,7 +16,7 @@ public class ReportProblemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_problem);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.bins_text_title));
+        actionBar.setTitle(R.string.bins_text_title);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -25,13 +25,11 @@ public class ReportProblemActivity extends AppCompatActivity {
     }
 
     public void onClickCollections(View view) {
-        Intent intent = CollectionActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(CollectionActivity.newIntent(this));
     }
 
     public void onClickRecycling(View view) {
-        Intent intent = RecyclingActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(RecyclingActivity.newIntent(this));
     }
 
     public void onClickReportProblem(View view) {

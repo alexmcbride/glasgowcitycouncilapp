@@ -30,8 +30,8 @@ public class CommentsActivity extends AppCompatActivity {
 
         // update actionbar.
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_view_posts));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_view_posts);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         // init db.
@@ -73,8 +73,7 @@ public class CommentsActivity extends AppCompatActivity {
         }
 
         // if we're redirecting from login screen then show just logged in message.
-        Intent intent = getIntent();
-        boolean justLoggedIn = intent.getBooleanExtra(EXTRA_JUST_LOGGED_IN, false);
+        boolean justLoggedIn = getIntent().getBooleanExtra(EXTRA_JUST_LOGGED_IN, false);
         if (justLoggedIn) {
             Toast.makeText(CommentsActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
         }
@@ -94,14 +93,12 @@ public class CommentsActivity extends AppCompatActivity {
         String username = MainActivity.getPrefsUsername(this);
 
         // if we're not logged in then redirect to login screen, otherwise go to new post screen.
-        Intent intent;
         if (username == null) {
-            intent = LoginActivity.newIntent(this);
+            startActivity(LoginActivity.newIntent(this));
         }
         else {
-            intent = NewPostActivity.newIntent(this);
+            startActivity(NewPostActivity.newIntent(this));
         }
-        startActivity(intent);
     }
 
     @Override

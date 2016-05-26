@@ -17,17 +17,13 @@ public class TouristsActivity extends AppCompatActivity {
     private ListView mListMuseums;
     private CursorAdapter mMuseumsAdapter;
 
-    public static Intent newIntent(Context context) {
-        return new Intent(context, TouristsActivity.class);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourists);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Tourists");
+        actionBar.setTitle(R.string.tourists_text_title);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mListMuseums = (ListView) findViewById(R.id.listMuseums);
@@ -52,26 +48,20 @@ public class TouristsActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Cursor cursor = mMuseumsAdapter.getCursor();
-        if (cursor != null) {
-            cursor.close();
+        if (mMuseumsAdapter != null) {
+            mMuseumsAdapter.getCursor().close();
         }
     }
 
-    public void onClickBack(View view) {
-        finish();
-    }
-
-    public void onClickMuseums(View view) {
-    }
-
     public void onClickLibraries(View view) {
-        Intent intent = LibrariesActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(LibrariesActivity.newIntent(this));
     }
 
     public void onClickParks(View view) {
-        Intent intent = ParksActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(ParksActivity.newIntent(this));
+    }
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, TouristsActivity.class);
     }
 }

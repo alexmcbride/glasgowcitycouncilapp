@@ -4,10 +4,6 @@ public class Login {
     private String mUsername;
     private String mPassword;
 
-    public Login() {
-
-    }
-
     public String getUsername() {
         return mUsername;
     }

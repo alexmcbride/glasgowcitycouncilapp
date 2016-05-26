@@ -28,8 +28,8 @@ public class ViewPostActivity extends AppCompatActivity {
 
         // setup actionbar.
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_view_post));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_view_post);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         // get widgets
@@ -46,8 +46,8 @@ public class ViewPostActivity extends AppCompatActivity {
         boolean postAdded = intent.getBooleanExtra(EXTRA_POST_ADDED, false);
 
         // get post from DB.
-        DbHandler dbHandler = new DbHandler(this);
-        Post post = dbHandler.getPost(mPostId);
+        DbHandler db = new DbHandler(this);
+        Post post = db.getPost(mPostId);
 
         // get humanised time
         CharSequence time = DateUtils.getRelativeTimeSpanString(post.getPosted().getTime(),
@@ -60,7 +60,7 @@ public class ViewPostActivity extends AppCompatActivity {
         textComment.setText(post.getContent());
 
         // update comments listview.
-        Cursor cursor = dbHandler.getCommentsCursor(mPostId);
+        Cursor cursor = db.getCommentsCursor(mPostId);
         mCursorAdapter = new CommentCursorAdapter(this, cursor);
         listComments.setAdapter(mCursorAdapter);
 
@@ -82,6 +82,7 @@ public class ViewPostActivity extends AppCompatActivity {
         if (commentAdded) {
             Toast.makeText(ViewPostActivity.this, R.string.comments_toast_new_comment, Toast.LENGTH_SHORT).show();
         }
+
         if (postAdded) {
             Toast.makeText(ViewPostActivity.this, R.string.comment_toast_new_post, Toast.LENGTH_SHORT).show();
         }
@@ -105,8 +106,7 @@ public class ViewPostActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else {
-            Intent intent = NewCommentActivity.newIntent(this, mPostId);
-            startActivity(intent);
+            startActivity(NewCommentActivity.newIntent(this, mPostId));
         }
     }
 

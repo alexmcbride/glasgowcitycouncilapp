@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String SHARED_PREFS_NAME = "GCC_PREFS";
+    private static final String SHARED_PREFS_NAME = "GCC_SHARED_PREFS";
     private static final String PREFS_USERNAME = "USERNAME";
 
     @Override
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Home");
+        actionBar.setTitle(R.string.home_text_title);
 
         // show logged in text.
         TextView textLoggedIn = (TextView) findViewById(R.id.textLoggedIn);
@@ -58,13 +58,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static String getPrefsUsername(Context context) {
-        SharedPreferences prefs = getSharedPrefs(context);
-        return prefs.getString(PREFS_USERNAME, null);
+        return getSharedPrefs(context).getString(PREFS_USERNAME, null);
     }
 
     public static void setPrefsUsername(Context context, String username) {
-        SharedPreferences prefs = getSharedPrefs(context);
-        SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences.Editor editor = getSharedPrefs(context).edit();
         editor.putString(PREFS_USERNAME, username);
         editor.apply();
     }

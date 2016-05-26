@@ -15,18 +15,16 @@ public class RecyclingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycling);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.bins_text_title));
+        actionBar.setTitle(R.string.bins_text_title);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public void onClickCollections(View view) {
-        Intent intent = CollectionActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(CollectionActivity.newIntent(this));
     }
 
     public void onClickProblems(View view) {
-        Intent intent = ReportProblemActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(ReportProblemActivity.newIntent(this));
     }
 
     public static Intent newIntent(Context context) {

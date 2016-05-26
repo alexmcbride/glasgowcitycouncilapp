@@ -9,10 +9,6 @@ public class Comment {
     private Date mPosted;
     private String mContent;
 
-    public Comment() {
-
-    }
-
     public long getId() {
         return mId;
     }

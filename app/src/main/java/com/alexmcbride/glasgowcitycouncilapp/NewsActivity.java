@@ -22,17 +22,10 @@ public class NewsActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("News");
+        actionBar.setTitle(R.string.news_text_title);
 
         DbHandler db = new DbHandler(this);
         Cursor cursor = db.getArticlesCursor();
-
-        mSimpleCursorAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_1,
-                cursor,
-                new String[]{DbSchema.ArticleTable.Columns.TITLE},
-                new int[]{android.R.id.text1},
-                0);
 
         ListView listArticles = (ListView)findViewById(R.id.listArticles);
         listArticles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,15 +35,18 @@ public class NewsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mSimpleCursorAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1,
+                cursor,
+                new String[]{DbSchema.ArticleTable.Columns.TITLE},
+                new int[]{android.R.id.text1},
+                0);
         listArticles.setAdapter(mSimpleCursorAdapter);
     }
 
     public static Intent newIntent(Context context) {
         return new Intent(context, NewsActivity.class);
-    }
-
-    public void onClickBack(View view) {
-        finish();
     }
 
     @Override

@@ -21,7 +21,7 @@ public class MuseumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_museum);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Tourists");
+        actionBar.setTitle(R.string.tourists_text_title);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mTextName = (TextView)findViewById(R.id.textName);
@@ -47,10 +47,6 @@ public class MuseumActivity extends AppCompatActivity {
         Intent intent = new Intent(context, MuseumActivity.class);
         intent.putExtra(EXTRA_MUSEUM_ID, museumId);
         return intent;
-    }
-
-    public void onClickBack(View view) {
-        finish();
     }
 
     public void onClickLibraries(View view) {

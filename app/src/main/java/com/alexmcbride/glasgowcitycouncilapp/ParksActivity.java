@@ -15,7 +15,7 @@ public class ParksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_parks);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Tourists");
+        actionBar.setTitle(R.string.tourists_text_title);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -24,16 +24,10 @@ public class ParksActivity extends AppCompatActivity {
     }
 
     public void onClickMuseums(View view) {
-        Intent intent = TouristsActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(TouristsActivity.newIntent(this));
     }
 
     public void onClickLibraries(View view) {
-        Intent intent = LibrariesActivity.newIntent(this);
-        startActivity(intent);
-    }
-
-    public void onClickBack(View view) {
-        finish();
+        startActivity(LibrariesActivity.newIntent(this));
     }
 }

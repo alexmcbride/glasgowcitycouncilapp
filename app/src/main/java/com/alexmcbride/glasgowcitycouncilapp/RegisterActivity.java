@@ -23,8 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_register));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_register);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mEditUsername = (EditText)findViewById(R.id.editUsername);
@@ -37,10 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context context) {
         return new Intent(context, RegisterActivity.class);
-    }
-
-    public void onClickBack(View view) {
-        finish();
     }
 
     public void onClickRegister(View view) {
@@ -91,8 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
             db.addLogin(login);
             db.addUser(user);
 
-            Intent intent = RegisterConfirmActivity.newIntent(this);
-            startActivity(intent);
+            startActivity(RegisterConfirmActivity.newIntent(this));
         }
         else {
             mTextErrorMessage.setText(R.string.register_text_username_exists);

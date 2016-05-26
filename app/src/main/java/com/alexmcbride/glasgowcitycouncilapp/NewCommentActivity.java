@@ -27,8 +27,8 @@ public class NewCommentActivity extends AppCompatActivity {
 
         // update action bar.
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_new_comment));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_new_comment);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mEditComment = (EditText)findViewById(R.id.editComment);
@@ -68,8 +68,7 @@ public class NewCommentActivity extends AppCompatActivity {
         db.updatePost(mPost);
 
         // redirect back to post to view newly posted comment.
-        Intent intent = ViewPostActivity.newIntent(this, mPost.getId(), false, true);
-        startActivity(intent);
+        startActivity(ViewPostActivity.newIntent(this, mPost.getId(), false, true));
     }
 
     @Override

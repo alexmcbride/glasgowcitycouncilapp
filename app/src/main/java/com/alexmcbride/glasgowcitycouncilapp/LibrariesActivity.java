@@ -15,26 +15,19 @@ public class LibrariesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_libraries);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Tourists");
+        actionBar.setTitle(R.string.tourists_text_title);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, LibrariesActivity.class);
-        return intent;
-    }
-
-    public void onClickBack(View view) {
-        finish();
+        return new Intent(context, LibrariesActivity.class);
     }
 
     public void onClickMuseums(View view) {
-        Intent intent = TouristsActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(TouristsActivity.newIntent(this));
     }
 
     public void onClickParks(View view) {
-        Intent intent = ParksActivity.newIntent(this);
-        startActivity(intent);
+        startActivity(ParksActivity.newIntent(this));
     }
 }

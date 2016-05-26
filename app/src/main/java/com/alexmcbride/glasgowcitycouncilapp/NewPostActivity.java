@@ -24,8 +24,8 @@ public class NewPostActivity extends AppCompatActivity {
         mUsername = MainActivity.getPrefsUsername(this);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(getString(R.string.comments_text_title));
-        actionBar.setSubtitle(getString(R.string.comments_text_new_post));
+        actionBar.setTitle(R.string.comments_text_title);
+        actionBar.setSubtitle(R.string.comments_text_new_post);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -52,8 +52,7 @@ public class NewPostActivity extends AppCompatActivity {
         DbHandler db = new DbHandler(this);
         db.addPost(post);
 
-        Intent intent = ViewPostActivity.newIntent(this, post.getId(), true, false);
-        startActivity(intent);
+        startActivity(ViewPostActivity.newIntent(this, post.getId(), true, false));
     }
 
     public static Intent newIntent(Context context) {

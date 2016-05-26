@@ -6,10 +6,6 @@ public class Museum {
     private String description;
     private String imageSrc;
 
-    public Museum() {
-
-    }
-
     public long getId() {
         return id;
     }
