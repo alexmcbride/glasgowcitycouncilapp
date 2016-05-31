@@ -1,40 +1,40 @@
 package com.alexmcbride.glasgowcitycouncilapp;
 
 public class Museum {
-    private long id;
-    private String name;
-    private String description;
-    private String imageSrc;
+    private long mId;
+    private String mName;
+    private String mDescription;
+    private String mImageSrc;
 
     public long getId() {
-        return id;
+        return mId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        mId = id;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        mName = name;
     }
 
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        mDescription = description;
     }
 
     public String getImageSrc() {
-        return imageSrc;
+        return mImageSrc;
     }
 
     public void setImageSrc(String imageSrc) {
-        this.imageSrc = imageSrc;
+        mImageSrc = imageSrc;
     }
 }

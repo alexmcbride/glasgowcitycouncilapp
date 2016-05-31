@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CommentsActivity extends AppCompatActivity {
-    private static final String TAG = "CommentsActivity";
     private static final String EXTRA_JUST_LOGGED_IN = "JUST_LOGGED_IN";
     private CursorAdapter mCursorAdapter;
     private TextView mTextWelcome;

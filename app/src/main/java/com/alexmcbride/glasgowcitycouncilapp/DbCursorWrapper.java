@@ -26,21 +26,6 @@ public class DbCursorWrapper extends CursorWrapper {
         return museum;
     }
 
-    public Login getLogin() {
-        Login login = new Login();
-        login.setUsername(getString(getColumnIndex(LoginTable.Columns.USERNAME)));
-        login.setPassword(getString(getColumnIndex(LoginTable.Columns.PASSWORD)));
-        return login;
-    }
-
-    public User getUser () {
-        User user = new User();
-        user.setFirstName(getString(getColumnIndex(DbSchema.UserTable.Columns.USERNAME)));
-        user.setLastName(getString(getColumnIndex(DbSchema.UserTable.Columns.FIRST_NAME)));
-        user.setEmail(getString(getColumnIndex(DbSchema.UserTable.Columns.LAST_NAME)));
-        return user;
-    }
-
     public Article getArticle() {
         Article article = new Article();
         article.setId(getLong(getColumnIndex(ArticleTable.Columns.ID)));

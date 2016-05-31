@@ -143,13 +143,8 @@ public class DbHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public CursorAdapter getMuseums(Context context, int layout, String[] columns, int[] widgets) {
-        SQLiteDatabase db = getReadableDatabase();
-
-        Cursor cursor = db.query(DbSchema.MuseumTable.NAME,
-                null, null, null, null, null,  null);
-
-        return new SimpleCursorAdapter(context, layout, cursor, columns, widgets, 0);
+    public Cursor getMuseumsCursor() {
+        return getReadableDatabase().query(MuseumTable.NAME, null, null, null, null, null,  null);
     }
 
     public Museum getMuseum(long id) {
@@ -174,14 +169,6 @@ public class DbHandler extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-    }
-
-    public void addMuseum(Museum museum) {
-        ContentValues values = getContentValues(museum);
-
-        SQLiteDatabase db = getWritableDatabase();
-        long id = db.insert(MuseumTable.NAME, null, values);
-        museum.setId(id);
     }
 
     private ContentValues getContentValues(Museum museum) {
@@ -231,36 +218,36 @@ public class DbHandler extends SQLiteOpenHelper {
         }
     }
 
-    public User getUser(String username) {
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = null;
-        try {
-            String sql = "SELECT * " +
-                    " FROM " + LoginTable.NAME + " AS l" +
-                    " JOIN " + UserTable.NAME + " AS u" +
-                    " ON l." + LoginTable.Columns.USERNAME+ "=u." + UserTable.Columns.USERNAME +
-                    " WHERE l." + LoginTable.Columns.USERNAME + "=?";
-
-            cursor = db.rawQuery(sql, new String[]{username});
-            if (cursor.moveToFirst()) {
-                DbCursorWrapper wrapper = new DbCursorWrapper(cursor);
-
-                Login login = wrapper.getLogin();
-
-                User user = wrapper.getUser();
-                user.setLogin(login);
-
-                return user;
-            }
-
-            return null;
-        }
-        finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
+//    public User getUser(String username) {
+//        SQLiteDatabase db = getWritableDatabase();
+//        Cursor cursor = null;
+//        try {
+//            String sql = "SELECT * " +
+//                    " FROM " + LoginTable.NAME + " AS l" +
+//                    " JOIN " + UserTable.NAME + " AS u" +
+//                    " ON l." + LoginTable.Columns.USERNAME+ "=u." + UserTable.Columns.USERNAME +
+//                    " WHERE l." + LoginTable.Columns.USERNAME + "=?";
+//
+//            cursor = db.rawQuery(sql, new String[]{username});
+//            if (cursor.moveToFirst()) {
+//                DbCursorWrapper wrapper = new DbCursorWrapper(cursor);
+//
+//                Login login = wrapper.getLogin();
+//
+//                User user = wrapper.getUser();
+//                user.setLogin(login);
+//
+//                return user;
+//            }
+//
+//            return null;
+//        }
+//        finally {
+//            if (cursor != null) {
+//                cursor.close();
+//            }
+//        }
+//    }
 
     public boolean userExists(String username) {
         SQLiteDatabase db = getWritableDatabase();
@@ -282,8 +269,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public Cursor getArticlesCursor() {
-        SQLiteDatabase db = getReadableDatabase();
-        return db.query(ArticleTable.NAME, null, null, null, null, null, null);
+        return getReadableDatabase().query(ArticleTable.NAME, null, null, null, null, null, null);
     }
 
     public Article getArticle(long id) {
@@ -310,13 +296,6 @@ public class DbHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void addArticle(Article article) {
-        ContentValues values = getContentValues(article);
-        SQLiteDatabase db = getWritableDatabase();
-        long id = db.insert(ArticleTable.NAME, null, values);
-        article.setId(id);
-    }
-
     private ContentValues getContentValues(Article article) {
         ContentValues values = new ContentValues();
         values.put(ArticleTable.Columns.TITLE, article.getTitle());
@@ -326,8 +305,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public Cursor getPostsCursor() {
-        SQLiteDatabase db = getReadableDatabase();
-        return db.query(PostTable.NAME,
+        return getReadableDatabase().query(PostTable.NAME,
                 null, null, null, null, null,
                 PostTable.Columns.POSTED + " DESC");
     }
@@ -357,8 +335,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public Cursor getCommentsCursor(long postId) {
-        SQLiteDatabase db = getReadableDatabase();
-        return db.query(CommentTable.NAME,
+        return getReadableDatabase().query(CommentTable.NAME,
                 null,
                 CommentTable.Columns.POST_ID + "=?",
                 new String[]{String.valueOf(postId)},
@@ -373,14 +350,13 @@ public class DbHandler extends SQLiteOpenHelper {
         post.setId(id);
     }
 
-    public boolean updatePost(Post post) {
+    public void updatePost(Post post) {
         ContentValues values = getContentValues(post);
         SQLiteDatabase db = getWritableDatabase();
-        int rows = db.update(PostTable.NAME,
+        db.update(PostTable.NAME,
                 values,
                 PostTable.Columns.ID + "=?",
                 new String[]{String.valueOf(post.getId())});
-        return rows > 0;
     }
 
     private ContentValues getContentValues(Post post) {
@@ -394,15 +370,20 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public void addComment(Comment comment) {
+        ContentValues values = getContentValues(comment);
+
+        SQLiteDatabase db = getWritableDatabase();
+        long id = db.insert(CommentTable.NAME, null, values);
+        comment.setId(id);
+    }
+
+    private ContentValues getContentValues(Comment comment) {
         ContentValues values = new ContentValues();
         values.put(CommentTable.Columns.POST_ID, comment.getPostId());
         values.put(CommentTable.Columns.USERNAME, comment.getUsername());;
         values.put(CommentTable.Columns.POSTED, comment.getPosted().getTime());
         values.put(CommentTable.Columns.CONTENT, comment.getContent());
-
-        SQLiteDatabase db = getWritableDatabase();
-        long id = db.insert(CommentTable.NAME, null, values);
-        comment.setId(id);
+        return values;
     }
 }
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import com.alexmcbride.glasgowcitycouncilapp.DbSchema.MuseumTable;
 
@@ -36,11 +37,14 @@ public class TouristsActivity extends AppCompatActivity {
         });
 
         DbHandler db = new DbHandler(this);
+        Cursor cursor = db.getMuseumsCursor();
 
-        mMuseumsAdapter = db.getMuseums(this, android.R.layout.simple_list_item_1,
+        mMuseumsAdapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1,
+                cursor,
                 new String[]{MuseumTable.Columns.NAME},
-                new int[]{android.R.id.text1});
-
+                new int[]{android.R.id.text1},
+                0);
         mListMuseums.setAdapter(mMuseumsAdapter);
     }
 
