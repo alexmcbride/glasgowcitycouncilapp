@@ -58,4 +58,9 @@ public class MuseumActivity extends AppCompatActivity {
         Intent intent = ParksActivity.newIntent(this);
         startActivity(intent);
     }
+
+    public void onClickMuseums(View view) {
+        Intent intent = TouristsActivity.newIntent(this);
+        startActivity(intent);
+    }
 }
