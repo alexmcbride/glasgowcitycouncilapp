@@ -28,19 +28,21 @@ public class MuseumActivity extends AppCompatActivity {
         mTextDescription = (TextView)findViewById(R.id.textDescription);
         mImageMuseum = (ImageView)findViewById(R.id.imageMuseum);
 
-        // load museum from DB.
+        // get id of museum to display
         Intent intent = getIntent();
         long id = intent.getLongExtra(EXTRA_MUSEUM_ID, -1);
-        if (id > -1) {
-            DbHandler db = new DbHandler(this);
-            Museum museum = db.getMuseum(id);
-            if (museum != null) {
-                int resource = getResources().getIdentifier(museum.getImageSrc(), "drawable", getPackageName());
-                mTextName.setText(museum.getName());
-                mTextDescription.setText(museum.getDescription());
-                mImageMuseum.setImageResource(resource);
-            }
-        }
+
+        // get museum from database
+        DbHandler db = new DbHandler(this);
+        Museum museum = db.getMuseum(id);
+
+        // update UI.
+        mTextName.setText(museum.getName());
+        mTextDescription.setText(museum.getDescription());
+
+        // get resource id from resources and set image
+        int resource = getResources().getIdentifier(museum.getImageSrc(), "drawable", getPackageName());
+        mImageMuseum.setImageResource(resource);
     }
 
     public static Intent newIntent(Context context, long museumId) {

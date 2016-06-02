@@ -2,7 +2,7 @@
     <string name="app_name">Glasgow City Council</string>
     <string name="main_text_news">News</string>
     <string name="main_text_tourists">Tourists</string>
-    <string name="main_text_bins">Bins </string>
+    <string name="main_text_bins">Bins</string>
     <string name="main_text_comments">Comments</string>
     <string name="main_text_mycouncil">My Council</string>
     <string name="tourists_text_title">Tourists</string>
@@ -19,7 +19,7 @@
     <string name="bins_text_title"><![CDATA[Bins & Recycling]]></string>
     <string name="bins_button_collection">Collections</string>
     <string name="bins_button_recycling">Recycling</string>
-    <string name="bins_button_problems">Report Problems</string>
+    <string name="bins_button_problems">Problems</string>
     <string name="collections_text_title">Collections</string>
     <string name="collections_text_content">We provide a special collection service for bulky items of domestic waste. This service is provided to all households in Glasgow and is free of charge for most items, however, some types of materials are chargeable, or for health and safety reasons cannot be collected.\n\nCollections of bulky waste items will be uplifted within 28 days.</string>
     <string name="collections_text_subtitle">Arrange</string>
@@ -68,7 +68,7 @@
     <string name="view_post_hint_comment">Enter a new comment</string>
     <string name="button_post">New Comment</string>
     <string name="new_comment_text_title">New Comment</string>
-    <string name="button_post_comment">Post Comment</string>
+    <string name="button_post_comment">Add Comment</string>
     <string name="new_comment_hint">Enter comment here</string>
     <string name="comment_confirm_text_title">Comment Posted</string>
     <string name="comment_confirm_text_message">Thank you - your comment has been posted</string>

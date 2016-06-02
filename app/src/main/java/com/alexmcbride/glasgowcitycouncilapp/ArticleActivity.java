@@ -39,8 +39,4 @@ public class ArticleActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_ARTICLE_ID, id);
         return intent;
     }
-
-    public void onClickComment(View view) {
-        startActivity(CommentsActivity.newIntent(this));
-    }
 }

@@ -33,8 +33,6 @@ public class DbHandler extends SQLiteOpenHelper {
                 + MuseumTable.Columns.IMAGE_SRC + " TEXT"
                 + ");");
 
-        Log.d("DbHandler", "fart");
-
         db.execSQL("CREATE TABLE " + LoginTable.NAME + "("
                 + LoginTable.Columns.USERNAME + " TEXT,"
                 + LoginTable.Columns.PASSWORD + " TEXT"
